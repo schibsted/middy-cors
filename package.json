@@ -27,9 +27,15 @@
     "url": "git+https://github.com/schibsted/middy-cors.git"
   },
   "keywords": [
-    "middy",
-    "accesslog",
-    "middleware"
+    "Lambda",
+    "Middleware",
+    "Serverless",
+    "Framework",
+    "AWS",
+    "AWS Lambda",
+    "Middy",
+    "CORS",
+    "Cross-Origin Resource Sharing"
   ],
   "author": "",
   "license": "GPL-3.0-or-later",
