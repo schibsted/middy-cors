@@ -1,18 +1,15 @@
-const getCorsHeaders = ({
-    allowedOrigins,
-    exposeHeaders,
-    maxAge,
-    credentials = false,
-    allowMethods,
-    allowHeaders,
-} = {}) => {
+const R = require('ramda');
+
+const getCorsHeaders = ({ allowedOrigins, exposeHeaders, maxAge, credentials, allowMethods, allowHeaders } = {}) => {
     const headers = {};
 
     if (allowedOrigins) {
         headers['access-control-allow-origin'] = allowedOrigins.join(', ');
     }
 
-    headers['access-control-allow-credentials'] = credentials;
+    if (credentials !== undefined) {
+        headers['access-control-allow-credentials'] = credentials;
+    }
 
     if (exposeHeaders) {
         headers['access-control-expose-headers'] = exposeHeaders.join(', ');
@@ -40,10 +37,16 @@ const corsMiddleware = (opts) => ({
     },
     onError: async (handler) => {
         // eslint-disable-next-line no-param-reassign
-        handler.response.headers = {
-            ...handler.response.headers,
-            ...getCorsHeaders(opts),
-        };
+        handler.response = R.assocPath(
+            ['headers'],
+            {
+                ...R.pathOr({}, ['response', 'headers'], handler),
+                ...getCorsHeaders(opts),
+            },
+            handler.response
+        );
+
+        return handler;
     },
 });
 
