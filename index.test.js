@@ -23,7 +23,7 @@ test('Does nothing if has no config', async () => {
     });
 });
 
-test('Adds CORS headers on success', async () => {
+test('Adds CORS headers on success from disallowed origin', async () => {
     const handler = middy(async () => ({
         statusCode: 200,
         body: JSON.stringify({ foo: 'bar' }),
@@ -43,14 +43,20 @@ test('Adds CORS headers on success', async () => {
         })
     );
 
-    const response = await handler({}, {});
+    const response = await handler(
+        {
+            headers: {
+                origin: 'https://www.google.com',
+            },
+        },
+        {}
+    );
     expect(response).toEqual({
         statusCode: 200,
         headers: {
             'access-control-allow-credentials': true,
             'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
             'access-control-allow-methods': 'GET, POST',
-            'access-control-allow-origin': 'https://www.vg.no, https://www.tek.no',
             'access-control-expose-headers': 'x-my-header',
             'access-control-max-age': 2628000,
             someHeader: 'someValue',
@@ -59,7 +65,50 @@ test('Adds CORS headers on success', async () => {
     });
 });
 
-test('Adds CORS headers on error', async () => {
+test('Adds CORS headers on success from allowed origin', async () => {
+    const handler = middy(async () => ({
+        statusCode: 200,
+        body: JSON.stringify({ foo: 'bar' }),
+        headers: {
+            someHeader: 'someValue',
+        },
+    }));
+
+    handler.use(
+        middleware({
+            allowedOrigins: ['https://www.vg.no', 'https://www.tek.no'],
+            exposeHeaders: ['x-my-header'],
+            maxAge: 2628000, // 1 month
+            credentials: true,
+            allowMethods: ['GET', 'POST'],
+            allowHeaders: ['Content-Type', 'Accept', 'X-Forwarded-For'],
+        })
+    );
+
+    const response = await handler(
+        {
+            headers: {
+                origin: 'https://www.tek.no',
+            },
+        },
+        {}
+    );
+    expect(response).toEqual({
+        statusCode: 200,
+        headers: {
+            'access-control-allow-credentials': true,
+            'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
+            'access-control-allow-methods': 'GET, POST',
+            'access-control-allow-origin': 'https://www.tek.no',
+            'access-control-expose-headers': 'x-my-header',
+            'access-control-max-age': 2628000,
+            someHeader: 'someValue',
+        },
+        body: JSON.stringify({ foo: 'bar' }),
+    });
+});
+
+test('Adds CORS headers on error from disallowed origin', async () => {
     const handler = middy(async () => {
         throw new createError.InternalServerError('whoops');
     });
@@ -75,14 +124,22 @@ test('Adds CORS headers on error', async () => {
         })
     );
 
-    await expect(handler({}, {})).rejects.toEqual(
+    await expect(
+        handler(
+            {
+                headers: {
+                    origin: 'https://www.google.com',
+                },
+            },
+            {}
+        )
+    ).rejects.toEqual(
         expect.objectContaining({
             response: {
                 headers: {
                     'access-control-allow-credentials': true,
                     'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
                     'access-control-allow-methods': 'GET, POST',
-                    'access-control-allow-origin': 'https://www.vg.no, https://www.tek.no',
                     'access-control-expose-headers': 'x-my-header',
                     'access-control-max-age': 2628000,
                 },
@@ -91,7 +148,48 @@ test('Adds CORS headers on error', async () => {
     );
 });
 
-test('Keep headers already present in the response on error', async () => {
+test('Adds CORS headers on error from allowed origin', async () => {
+    const handler = middy(async () => {
+        throw new createError.InternalServerError('whoops');
+    });
+
+    handler.use(
+        middleware({
+            allowedOrigins: ['https://www.vg.no', 'https://www.tek.no'],
+            exposeHeaders: ['x-my-header'],
+            maxAge: 2628000, // 1 month
+            credentials: true,
+            allowMethods: ['GET', 'POST'],
+            allowHeaders: ['Content-Type', 'Accept', 'X-Forwarded-For'],
+        })
+    );
+
+    await expect(
+        handler(
+            {
+                headers: {
+                    origin: 'https://www.tek.no',
+                },
+            },
+            {}
+        )
+    ).rejects.toEqual(
+        expect.objectContaining({
+            response: {
+                headers: {
+                    'access-control-allow-credentials': true,
+                    'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
+                    'access-control-allow-methods': 'GET, POST',
+                    'access-control-allow-origin': 'https://www.tek.no',
+                    'access-control-expose-headers': 'x-my-header',
+                    'access-control-max-age': 2628000,
+                },
+            },
+        })
+    );
+});
+
+test('Keep headers already present in the response on error from disallowed origin', async () => {
     const handler = middy(async () => {
         throw new createError.InternalServerError('whoops');
     });
@@ -119,14 +217,23 @@ test('Keep headers already present in the response on error', async () => {
         })
     );
 
-    await expect(handler({}, {})).rejects.toEqual(
+    await expect(
+        handler(
+            {
+                headers: {
+                    origin: 'https://www.tek.no',
+                },
+            },
+            {}
+        )
+    ).rejects.toEqual(
         expect.objectContaining({
             response: {
                 headers: {
                     'access-control-allow-credentials': true,
                     'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
                     'access-control-allow-methods': 'GET, POST',
-                    'access-control-allow-origin': 'https://www.vg.no, https://www.tek.no',
+                    'access-control-allow-origin': 'https://www.tek.no',
                     'access-control-expose-headers': 'x-my-header',
                     'access-control-max-age': 2628000,
                     someHeader: 'someValue',
