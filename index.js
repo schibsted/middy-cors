@@ -1,26 +1,36 @@
 const R = require('ramda');
 
-const getCorsHeaders = ({ allowedOrigins, exposeHeaders, maxAge, credentials, allowMethods, allowHeaders } = {}) => {
+const getCorsHeaders = (
+    { allowedOrigins, exposeHeaders, maxAge, credentials, allowMethods, allowHeaders } = {},
+    event
+) => {
     const headers = {};
 
     if (allowedOrigins) {
-        headers['access-control-allow-origin'] = allowedOrigins.join(', ');
+        const isOriginAllowed = R.find(
+            (allowedOrigin) => allowedOrigin === R.path(['headers', 'origin'], event),
+            allowedOrigins
+        );
+
+        if (isOriginAllowed) {
+            headers['access-control-allow-origin'] = isOriginAllowed;
+        }
     }
 
     if (credentials !== undefined) {
         headers['access-control-allow-credentials'] = credentials;
     }
 
-    if (exposeHeaders) {
+    if (!R.isNil(exposeHeaders) && !R.isEmpty(exposeHeaders)) {
         headers['access-control-expose-headers'] = exposeHeaders.join(', ');
     }
     if (maxAge !== undefined) {
         headers['access-control-max-age'] = maxAge;
     }
-    if (allowMethods) {
+    if (!R.isNil(allowMethods) && !R.isEmpty(allowMethods)) {
         headers['access-control-allow-methods'] = allowMethods.join(', ');
     }
-    if (allowHeaders) {
+    if (!R.isNil(allowHeaders) && !R.isEmpty(allowHeaders)) {
         headers['access-control-allow-headers'] = allowHeaders.join(', ');
     }
 
@@ -32,7 +42,7 @@ const corsMiddleware = (opts) => ({
         // eslint-disable-next-line no-param-reassign
         handler.response.headers = {
             ...handler.response.headers,
-            ...getCorsHeaders(opts),
+            ...getCorsHeaders(opts, handler.event),
         };
     },
     onError: async (handler) => {
@@ -41,7 +51,7 @@ const corsMiddleware = (opts) => ({
             ['headers'],
             {
                 ...R.pathOr({}, ['response', 'headers'], handler),
-                ...getCorsHeaders(opts),
+                ...getCorsHeaders(opts, handler.event),
             },
             handler.response
         );
