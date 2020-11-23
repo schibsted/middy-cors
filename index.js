@@ -1,5 +1,13 @@
 const R = require('ramda');
 
+const getAllowedOrigin = (origin, allowedOrigins) => {
+    if (R.includes('*', allowedOrigins)) {
+        return origin;
+    }
+
+    return R.find((allowedOrigin) => allowedOrigin === origin, allowedOrigins);
+};
+
 const getCorsHeaders = (
     { allowedOrigins, exposeHeaders, maxAge, credentials, allowMethods, allowHeaders } = {},
     event
@@ -7,13 +15,10 @@ const getCorsHeaders = (
     const headers = {};
 
     if (allowedOrigins) {
-        const isOriginAllowed = R.find(
-            (allowedOrigin) => allowedOrigin === R.path(['headers', 'origin'], event),
-            allowedOrigins
-        );
+        const origin = getAllowedOrigin(R.path(['headers', 'origin'], event), allowedOrigins);
 
-        if (isOriginAllowed) {
-            headers['access-control-allow-origin'] = isOriginAllowed;
+        if (origin) {
+            headers['access-control-allow-origin'] = origin;
         }
     }
 
