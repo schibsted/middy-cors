@@ -1,6 +1,6 @@
 {
   "name": "@schibsted/middy-cors",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Middy middleware for adding CORS headers to success response and errors",
   "main": "index.js",
   "engines": {
@@ -41,7 +41,7 @@
     "Cross-Origin Resource Sharing"
   ],
   "author": "",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/schibsted/middy-cors/issues"
   },
