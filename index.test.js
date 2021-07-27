@@ -176,19 +176,15 @@ test('Adds CORS headers on error from disallowed origin', async () => {
             },
             {}
         )
-    ).rejects.toEqual(
-        expect.objectContaining({
-            response: {
-                headers: {
-                    'access-control-allow-credentials': true,
-                    'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
-                    'access-control-allow-methods': 'GET, POST',
-                    'access-control-expose-headers': 'x-my-header',
-                    'access-control-max-age': 2628000,
-                },
-            },
-        })
-    );
+    ).resolves.toMatchObject({
+        headers: {
+            'access-control-allow-credentials': true,
+            'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
+            'access-control-allow-methods': 'GET, POST',
+            'access-control-expose-headers': 'x-my-header',
+            'access-control-max-age': 2628000,
+        },
+    });
 });
 
 test('Adds CORS headers on error from allowed origin', async () => {
@@ -216,20 +212,16 @@ test('Adds CORS headers on error from allowed origin', async () => {
             },
             {}
         )
-    ).rejects.toEqual(
-        expect.objectContaining({
-            response: {
-                headers: {
-                    'access-control-allow-credentials': true,
-                    'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
-                    'access-control-allow-methods': 'GET, POST',
-                    'access-control-allow-origin': 'https://www.tek.no',
-                    'access-control-expose-headers': 'x-my-header',
-                    'access-control-max-age': 2628000,
-                },
-            },
-        })
-    );
+    ).resolves.toMatchObject({
+        headers: {
+            'access-control-allow-credentials': true,
+            'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
+            'access-control-allow-methods': 'GET, POST',
+            'access-control-allow-origin': 'https://www.tek.no',
+            'access-control-expose-headers': 'x-my-header',
+            'access-control-max-age': 2628000,
+        },
+    });
 });
 
 test('Adds CORS headers on error when all origins allowed', async () => {
@@ -257,20 +249,16 @@ test('Adds CORS headers on error when all origins allowed', async () => {
             },
             {}
         )
-    ).rejects.toEqual(
-        expect.objectContaining({
-            response: {
-                headers: {
-                    'access-control-allow-credentials': true,
-                    'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
-                    'access-control-allow-methods': 'GET, POST',
-                    'access-control-allow-origin': 'https://www.tek.no',
-                    'access-control-expose-headers': 'x-my-header',
-                    'access-control-max-age': 2628000,
-                },
-            },
-        })
-    );
+    ).resolves.toMatchObject({
+        headers: {
+            'access-control-allow-credentials': true,
+            'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
+            'access-control-allow-methods': 'GET, POST',
+            'access-control-allow-origin': 'https://www.tek.no',
+            'access-control-expose-headers': 'x-my-header',
+            'access-control-max-age': 2628000,
+        },
+    });
 });
 
 test('Keep headers already present in the response on error from disallowed origin', async () => {
@@ -286,8 +274,6 @@ test('Keep headers already present in the response on error from disallowed orig
                 someHeader: 'someValue',
             },
         };
-
-        return true;
     });
 
     handler.use(
@@ -310,19 +296,15 @@ test('Keep headers already present in the response on error from disallowed orig
             },
             {}
         )
-    ).rejects.toEqual(
-        expect.objectContaining({
-            response: {
-                headers: {
-                    'access-control-allow-credentials': true,
-                    'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
-                    'access-control-allow-methods': 'GET, POST',
-                    'access-control-allow-origin': 'https://www.tek.no',
-                    'access-control-expose-headers': 'x-my-header',
-                    'access-control-max-age': 2628000,
-                    someHeader: 'someValue',
-                },
-            },
-        })
-    );
+    ).resolves.toMatchObject({
+        headers: {
+            'access-control-allow-credentials': true,
+            'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
+            'access-control-allow-methods': 'GET, POST',
+            'access-control-allow-origin': 'https://www.tek.no',
+            'access-control-expose-headers': 'x-my-header',
+            'access-control-max-age': 2628000,
+            someHeader: 'someValue',
+        },
+    });
 });
