@@ -3,9 +3,6 @@
   "version": "2.0.0",
   "description": "Middy middleware for adding CORS headers to success response and errors",
   "main": "index.js",
-  "engines": {
-    "node": "12"
-  },
   "scripts": {
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
