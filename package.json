@@ -1,6 +1,6 @@
 {
   "name": "@schibsted/middy-cors",
-  "version": "0.3.0",
+  "version": "2.0.0",
   "description": "Middy middleware for adding CORS headers to success response and errors",
   "main": "index.js",
   "engines": {
@@ -47,7 +47,7 @@
   },
   "homepage": "https://github.com/schibsted/middy-cors#readme",
   "devDependencies": {
-    "@middy/core": "^1.4.0",
+    "@middy/core": "^2.4.3",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "^14.2.0",
@@ -66,6 +66,6 @@
     "ramda": "^0.27.1"
   },
   "peerDependencies": {
-    "@middy/core": ">=1.0.0"
+    "@middy/core": ">=2.0.0"
   }
 }

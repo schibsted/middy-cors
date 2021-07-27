@@ -60,8 +60,6 @@ const corsMiddleware = (opts) => ({
             },
             handler.response
         );
-
-        return handler;
     },
 });
 
