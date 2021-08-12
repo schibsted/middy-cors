@@ -7,7 +7,8 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "prettier": "prettier --write",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.js": [
@@ -16,11 +17,6 @@
     "*.json": [
       "npm run prettier"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "repository": {
     "type": "git",
@@ -44,25 +40,25 @@
   },
   "homepage": "https://github.com/schibsted/middy-cors#readme",
   "devDependencies": {
-    "@middy/core": "2.4.3",
-    "babel-eslint": "^10.1.0",
-    "eslint": "7.11.0",
-    "eslint-config-airbnb-base": "14.2.0",
+    "@middy/core": "2.5.1",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-babel": "5.3.1",
-    "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jest": "24.1.0",
-    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-import": "2.24.0",
+    "eslint-plugin-jest": "24.4.0",
+    "eslint-plugin-prettier": "3.4.0",
     "http-errors": "1.8.0",
-    "husky": "4.3.0",
-    "jest": "^26.6.0",
+    "husky": "7.0.1",
+    "jest": "27.0.6",
     "lint-staged": "11.1.2",
-    "prettier": "2.1.2"
+    "prettier": "2.3.2"
   },
   "dependencies": {
-    "ramda": "^0.27.1"
+    "ramda": "0.27.1"
   },
   "peerDependencies": {
-    "@middy/core": ">=2.0.0"
+    "@middy/core": ">=2.5.1"
   }
 }
