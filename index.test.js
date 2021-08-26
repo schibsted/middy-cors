@@ -139,7 +139,6 @@ test('Adds CORS headers on success when all origins allowed', async () => {
     expect(response).toEqual({
         statusCode: 200,
         headers: {
-            'access-control-allow-credentials': true,
             'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
             'access-control-allow-methods': 'GET, POST',
             'access-control-allow-origin': 'https://www.tek.no',
@@ -251,7 +250,6 @@ test('Adds CORS headers on error when all origins allowed', async () => {
         )
     ).resolves.toMatchObject({
         headers: {
-            'access-control-allow-credentials': true,
             'access-control-allow-headers': 'Content-Type, Accept, X-Forwarded-For',
             'access-control-allow-methods': 'GET, POST',
             'access-control-allow-origin': 'https://www.tek.no',
