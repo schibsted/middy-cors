@@ -22,7 +22,7 @@ const getCorsHeaders = (
         }
     }
 
-    if (credentials !== undefined) {
+    if (credentials && !R.includes('*', allowedOrigins)) {
         headers['access-control-allow-credentials'] = credentials;
     }
 
