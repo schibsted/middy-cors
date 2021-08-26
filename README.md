@@ -49,7 +49,7 @@ handler({}, {}, (_, response) => {
   expect(response).toEqual({
     statusCode: 200,
     headers: {
-        'access-control-allow-origin': 'https://www.vg.no, https://www.tek.no',
+        'access-control-allow-origin': 'https://www.vg.no',
     },
     body: JSON.stringify({ foo: 'bar' }),
   })
