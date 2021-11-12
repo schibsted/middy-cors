@@ -9,8 +9,8 @@ const getAllowedOrigin = (origin, allowedOrigins) => {
 };
 
 const getCorsHeaders = (
-    { allowedOrigins, exposeHeaders, maxAge, credentials, allowMethods, allowHeaders } = {},
-    event
+    event,
+    { allowedOrigins, exposeHeaders, maxAge, credentials, allowMethods, allowHeaders } = {}
 ) => {
     const headers = {};
 
@@ -47,7 +47,7 @@ const corsMiddleware = (opts) => ({
         // eslint-disable-next-line no-param-reassign
         handler.response.headers = {
             ...handler.response.headers,
-            ...getCorsHeaders(opts, handler.event),
+            ...getCorsHeaders(handler.event, opts),
         };
     },
     onError: async (handler) => {
@@ -56,7 +56,7 @@ const corsMiddleware = (opts) => ({
             ['headers'],
             {
                 ...R.pathOr({}, ['response', 'headers'], handler),
-                ...getCorsHeaders(opts, handler.event),
+                ...getCorsHeaders(handler.event, opts),
             },
             handler.response
         );
