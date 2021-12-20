@@ -52,7 +52,7 @@
     "http-errors": "1.8.1",
     "husky": "7.0.4",
     "jest": "27.4.5",
-    "lint-staged": "11.1.2",
+    "lint-staged": "11.2.6",
     "prettier": "2.5.1"
   },
   "dependencies": {
