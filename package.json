@@ -3,6 +3,9 @@
   "version": "2.0.3",
   "description": "Middy middleware for adding CORS headers to success response and errors",
   "main": "index.js",
+  "engines": {
+    "node": ">=10 <=14"
+  },
   "scripts": {
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
@@ -40,14 +43,14 @@
   },
   "homepage": "https://github.com/schibsted/middy-cors#readme",
   "devDependencies": {
+    "@babel/eslint-parser": "^7.16.5",
     "@middy/core": "2.5.1",
-    "babel-eslint": "10.1.0",
     "eslint": "8.5.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-babel": "5.3.1",
-    "eslint-plugin-import": "2.24.2",
-    "eslint-plugin-jest": "24.4.0",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-jest": "25.3.0",
     "eslint-plugin-prettier": "4.0.0",
     "http-errors": "1.8.0",
     "husky": "7.0.4",
