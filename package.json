@@ -4,7 +4,7 @@
   "description": "Middy middleware for adding CORS headers to success response and errors",
   "main": "index.js",
   "engines": {
-    "node": ">=10 <=14"
+    "node": ">=10 <=16"
   },
   "scripts": {
     "lint": "eslint .",
