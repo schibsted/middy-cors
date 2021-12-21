@@ -1,15 +1,19 @@
 # Schibsted Middy CORS middleware
 
-#### CORS middleware for the middy framework, the stylish Node.js middleware engine for AWS Lambda
+![github checks](https://badgen.net/github/checks/schibsted/middy-cors)
+![current version @ npm](https://badgen.net/npm/v/@schibsted/middy-cors)
+![weekly downloads @ npm](https://badgen.net/npm/dw/@schibsted/middy-cors)
+![minified size](https://badgen.net//bundlephobia/min/@schibsted/middy-cors)
 
+#### CORS middleware for the middy framework, the stylish Node.js middleware engine for AWS Lambda
 
 This middleware sets HTTP CORS headers, necessary for making cross-origin requests, to the response object.
 
 Sets headers in `after` and `onError` phases.
 
 This is an alternative to [standard Middy cors handler](https://github.com/middyjs/middy/tree/master/packages/http-cors) with the following differences:
-- it allows you to add more CORS headers
 
+- it allows you to add more CORS headers
 
 ## Install
 
@@ -19,16 +23,14 @@ To install this middleware you can use NPM:
 npm install --save @schibsted/middy-cors
 ```
 
-
 ## Options
 
 - `allowedOrigins` (array) - list of allowed origins or `['*']` for allowing all origins
 - `exposeHeaders` (array) - list of headers to expose
 - `maxAge` (string) - value passed to `access-control-max-age` header
-- `credentials` (bool) - value passed to `access-control-allow-credentials` header 
+- `credentials` (bool) - value passed to `access-control-allow-credentials` header
 - `allowMethods` (array) - list of allowed HTTP methods
 - `allowHeaders` (array) - list of allowed HTTP headers
-
 
 ## Sample usage
 
@@ -55,7 +57,6 @@ handler({}, {}, (_, response) => {
   })
 })
 ```
-
 
 ## Contributing
 
