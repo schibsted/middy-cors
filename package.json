@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/schibsted/middy-cors#readme",
   "devDependencies": {
-    "@babel/eslint-parser": "^7.16.5",
+    "@babel/eslint-parser": "7.16.5",
     "@middy/core": "2.5.4",
     "eslint": "8.5.0",
     "eslint-config-airbnb-base": "15.0.0",
