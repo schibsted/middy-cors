@@ -7,11 +7,12 @@
     "node": "^12.20.0 || ^14.13.1"
   },
   "scripts": {
-    "lint": "eslint .",
     "lint-fix": "eslint . --fix",
+    "lint": "eslint .",
+    "prepare": "husky install",
     "prettier": "prettier --write",
-    "test": "jest",
-    "prepare": "husky install"
+    "release": "release-it",
+    "test": "jest"
   },
   "lint-staged": {
     "*.js": [
