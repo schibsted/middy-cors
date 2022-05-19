@@ -264,16 +264,6 @@ test('Keep headers already present in the response on error from disallowed orig
         throw new createError.InternalServerError('whoops');
     });
 
-    // eslint-disable-next-line no-shadow
-    handler.onError(async (handler) => {
-        // eslint-disable-next-line no-param-reassign
-        handler.response = {
-            headers: {
-                someHeader: 'someValue',
-            },
-        };
-    });
-
     handler.use(
         middleware({
             allowedOrigins: ['https://www.vg.no', 'https://www.tek.no'],
@@ -284,6 +274,16 @@ test('Keep headers already present in the response on error from disallowed orig
             allowHeaders: ['Content-Type', 'Accept', 'X-Forwarded-For'],
         })
     );
+
+    // eslint-disable-next-line no-shadow
+    handler.onError(async (handler) => {
+        // eslint-disable-next-line no-param-reassign
+        handler.response = {
+            headers: {
+                someHeader: 'someValue',
+            },
+        };
+    });
 
     await expect(
         handler(
