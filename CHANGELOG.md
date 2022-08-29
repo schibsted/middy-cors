@@ -1,5 +1,38 @@
 
 
+### [3.0.1](https://github.com/schibsted/middy-cors/compare/v3.0.0...v3.0.1) (2022-08-29)
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency @babel/eslint-parser to v7.18.2 ([#133](https://github.com/schibsted/middy-cors/issues/133)) ([3a3df8c](https://github.com/schibsted/middy-cors/commit/3a3df8c7a06daf2116efa8c1ab5a9b4bf2fd0922))
+* **deps:** update dependency @babel/eslint-parser to v7.18.9 ([#146](https://github.com/schibsted/middy-cors/issues/146)) ([a3ec95c](https://github.com/schibsted/middy-cors/commit/a3ec95ce1447af14584d07d6d2dc10295a98bb6c))
+* **deps:** update dependency @commitlint/cli to v17.0.1 ([#132](https://github.com/schibsted/middy-cors/issues/132)) ([b577c58](https://github.com/schibsted/middy-cors/commit/b577c58f22877ba6c4b07acf13c5581df9e2d5e1))
+* **deps:** update dependency @commitlint/cli to v17.1.2 ([#159](https://github.com/schibsted/middy-cors/issues/159)) ([3f2bab6](https://github.com/schibsted/middy-cors/commit/3f2bab66ceaf63aa19294e387fd01616cc76ba75))
+* **deps:** update dependency @middy/core to v3 ([#122](https://github.com/schibsted/middy-cors/issues/122)) ([e8ede83](https://github.com/schibsted/middy-cors/commit/e8ede8318c4987f9d5cd20d6b13e43eda3f8965b))
+* **deps:** update dependency @middy/core to v3.0.4 ([#136](https://github.com/schibsted/middy-cors/issues/136)) ([bfcbe93](https://github.com/schibsted/middy-cors/commit/bfcbe939a6d80c9e52d7542be46d99ad51554129))
+* **deps:** update dependency @middy/core to v3.1.0 ([#138](https://github.com/schibsted/middy-cors/issues/138)) ([231f9ff](https://github.com/schibsted/middy-cors/commit/231f9ffee8ca7df195a2b561114213ec03eb5aa3))
+* **deps:** update dependency @middy/core to v3.1.1 ([#150](https://github.com/schibsted/middy-cors/issues/150)) ([5e985f3](https://github.com/schibsted/middy-cors/commit/5e985f3ddb8d64327d2a803d4f650ccedeeb2598))
+* **deps:** update dependency @middy/core to v3.2.0 ([#153](https://github.com/schibsted/middy-cors/issues/153)) ([0fd6235](https://github.com/schibsted/middy-cors/commit/0fd62356662cdbf08fa80e4fdac6432094228cc5))
+* **deps:** update dependency @middy/core to v3.3.0 ([#155](https://github.com/schibsted/middy-cors/issues/155)) ([74e3f1d](https://github.com/schibsted/middy-cors/commit/74e3f1dd38a97f5228f1b3abac9b3ed11096e141))
+* **deps:** update dependency @release-it/conventional-changelog to v5.1.0 ([#154](https://github.com/schibsted/middy-cors/issues/154)) ([ad754c7](https://github.com/schibsted/middy-cors/commit/ad754c71c478d26c6fbc82f0eaf9172d34411157))
+* **deps:** update dependency jest to v28.1.1 ([#137](https://github.com/schibsted/middy-cors/issues/137)) ([505ebd2](https://github.com/schibsted/middy-cors/commit/505ebd2f31af3dbf7db14d3fe82346658ae95087))
+* **deps:** update dependency jest to v28.1.2 ([#143](https://github.com/schibsted/middy-cors/issues/143)) ([0bf3110](https://github.com/schibsted/middy-cors/commit/0bf311012288985ed0edded74a0d68cd685facb2))
+* **deps:** update dependency jest to v28.1.3 ([#144](https://github.com/schibsted/middy-cors/issues/144)) ([769bc56](https://github.com/schibsted/middy-cors/commit/769bc5631341f638ed6e7d08b9e366b61baf179f))
+* **deps:** update dependency jest to v29 ([#157](https://github.com/schibsted/middy-cors/issues/157)) ([4207110](https://github.com/schibsted/middy-cors/commit/42071106368f53ce0a4b402807b925b3dd98460d))
+* **deps:** update dependency release-it to v15.1.0 ([#140](https://github.com/schibsted/middy-cors/issues/140)) ([6e784a0](https://github.com/schibsted/middy-cors/commit/6e784a032c93be031d067a2be84c78e35a18ea89))
+* **deps:** update dependency release-it to v15.1.1 ([#142](https://github.com/schibsted/middy-cors/issues/142)) ([d151ebc](https://github.com/schibsted/middy-cors/commit/d151ebc2ebee3c12faec3a986be648134b5ef5f6))
+* **deps:** update dependency release-it to v15.1.2 ([#145](https://github.com/schibsted/middy-cors/issues/145)) ([31564b6](https://github.com/schibsted/middy-cors/commit/31564b6c098731c83e7bf695dad02f2fa267d398))
+* **deps:** update dependency release-it to v15.1.3 ([#147](https://github.com/schibsted/middy-cors/issues/147)) ([36de8e2](https://github.com/schibsted/middy-cors/commit/36de8e2f472073de4cd184cb048d61e9e0e6df28))
+* **deps:** update dependency release-it to v15.1.4 ([#148](https://github.com/schibsted/middy-cors/issues/148)) ([91c0f6a](https://github.com/schibsted/middy-cors/commit/91c0f6ae1399084a535bb7294279f33cac3ebf8a))
+* **deps:** update dependency release-it to v15.2.0 ([#149](https://github.com/schibsted/middy-cors/issues/149)) ([1356502](https://github.com/schibsted/middy-cors/commit/1356502160a7317dc38cfbb8efd3d4b64da43ec0))
+* **deps:** update dependency release-it to v15.3.0 ([#152](https://github.com/schibsted/middy-cors/issues/152)) ([c782d67](https://github.com/schibsted/middy-cors/commit/c782d67ebca708e2c5ea6a11dff587e5fb2efb48))
+* **deps:** update dependency release-it to v15.4.0 ([#156](https://github.com/schibsted/middy-cors/issues/156)) ([d4c8951](https://github.com/schibsted/middy-cors/commit/d4c89515c6b4e8dc6d896b5d0c327ead275cda89))
+* **deps:** update linters ([#135](https://github.com/schibsted/middy-cors/issues/135)) ([f2b07bf](https://github.com/schibsted/middy-cors/commit/f2b07bfb04d0481484b28bfb558602235c7d17d1))
+* **deps:** update release-related tools ([#158](https://github.com/schibsted/middy-cors/issues/158)) ([47b986d](https://github.com/schibsted/middy-cors/commit/47b986da08d586587dd10fc435ac579e48b64483))
+* **deps:** update release-related tools to v17.0.2 ([#134](https://github.com/schibsted/middy-cors/issues/134)) ([6010acb](https://github.com/schibsted/middy-cors/commit/6010acb234fdb177ea6044c7a541cd569e0ecdd4))
+* **deps:** update release-related tools to v17.0.3 ([#141](https://github.com/schibsted/middy-cors/issues/141)) ([b6b2c9e](https://github.com/schibsted/middy-cors/commit/b6b2c9e64ed3ed1f1f38ec794386e285c25adb6d))
+
 ## [3.0.0](https://github.com/schibsted/middy-cors/compare/v2.1.0...v3.0.0) (2022-05-19)
 
 
